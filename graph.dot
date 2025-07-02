@@ -1,0 +1,7 @@
+digraph G {
+  "clarifier" [shape=box, style=rounded];
+  "planner" [shape=box, style=rounded];
+  "summary" [shape=box, style=rounded];
+  "clarifier" -> "planner";
+  "planner" -> "summary";
+}
