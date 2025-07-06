@@ -1,12 +1,13 @@
 # demo.py
 from agent import Agent, AgentGraph
 import datetime, json
+from helper import safe_json_merge
 
 clarifier = Agent(
     name="clarifier",
     llm_system_prompt="You are a helpful assistant who extracts key mission parameters "
                       "from the user's free-text into JSON {objective, location, deadline}.",
-    fn_after_llm=lambda resp, st: {**st, **json.loads(resp)}
+    fn_after_llm=safe_json_merge
 )
 
 planner = Agent(

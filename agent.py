@@ -20,7 +20,7 @@ class Agent:
             {"role": "system", "content": self.llm_system_prompt},
             {"role": "user", "content": user_input},
         ]
-        completion = client.chat.completions.create(model="gpt-4o-mini",
+        completion = client.chat.completions.create(model="gpt-4o",
         messages=messages,
         temperature=0.2)
         response = completion.choices[0].message.content.strip()
