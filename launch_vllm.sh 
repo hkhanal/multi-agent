@@ -1,0 +1,31 @@
+#!/bin/bash
+# ==============================
+# launch_vllm.sh
+# Script to launch a vLLM server on A100 GPU
+# ==============================
+
+# ----- CONFIG -----
+MODEL="Qwen/Qwen2.5-14B-Instruct"   # Change to your preferred model
+PORT=8000
+HOST="0.0.0.0"
+MAX_MODEL_LEN=32768                 # Context length
+GPU_UTIL=0.90                       # GPU memory utilization
+KV_CACHE_DTYPE="fp8"                 # Use fp8 kv-cache to save memory
+MODEL_ALIAS="qwen2.5-14b-instruct"  # Served model name (for API calls)
+
+# ----- LAUNCH -----
+echo "Launching vLLM with model: $MODEL on port $PORT..."
+echo "Host: $HOST | Context: $MAX_MODEL_LEN | GPU util: $GPU_UTIL | KV-cache: $KV_CACHE_DTYPE"
+
+vllm serve "$MODEL" \
+    --host "$HOST" \
+    --port "$PORT" \
+    --max-model-len "$MAX_MODEL_LEN" \
+    --gpu-memory-utilization "$GPU_UTIL" \
+    --kv-cache-dtype "$KV_CACHE_DTYPE" \
+    --served-model-name "$MODEL_ALIAS"
+
+# Usage:
+#   ./launch_vllm.sh
+# Then connect with any OpenAI-compatible client at:
+#   base_url=http://localhost:8000/v1
