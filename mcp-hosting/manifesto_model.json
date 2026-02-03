@@ -1,0 +1,14 @@
+{
+  "classifier1": {
+    "framework": "sklearn_pipeline",
+    "path": "/models/classifier1.joblib",
+    "id_column": "id",
+    "target_labels": ["no", "yes"]
+  },
+  "classifier2": {
+    "framework": "sklearn_pipeline",
+    "path": "/models/classifier2.joblib",
+    "id_column": "id",
+    "target_labels": ["A", "B", "C"]
+  }
+}
